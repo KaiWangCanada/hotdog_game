@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #87CEEB;
+    overflow: hidden;
+    color: #333;
+}
+
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-canvas {
+    display: block;
+    background-color: #87CEEB;
+    border: 4px solid #333;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* Game UI */
+#game-ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+    pointer-events: none;
+}
+
+.score-container, .lives-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.lives-container {
+    color: #FFD700; /* Gold color for lives */
+    font-weight: bold;
+}
+
+.condiment-container {
+    display: flex;
+    gap: 15px;
+}
+
+.condiment {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.condiment-icon {
+    font-size: 20px;
+}
+
+.ketchup .condiment-icon {
+    color: #FF0000;
+}
+
+.mustard .condiment-icon {
+    color: #FFD700;
+}
+
+.relish .condiment-icon {
+    color: #32CD32;
+}
+
+/* Menus */
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 5px solid #FF6347;
+    border-radius: 20px;
+    padding: 30px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    min-width: 320px;
+}
+
+.menu h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #FF6347;
+    text-shadow: 2px 2px 0 #FFD700;
+}
+
+.menu p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.menu button {
+    background-color: #FF6347;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-weight: bold;
+    box-shadow: 0 5px 0 #D84315;
+}
+
+.menu button:hover {
+    background-color: #FF8C00;
+    transform: translateY(-2px);
+}
+
+.menu button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #D84315;
+}
+
+.final-score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.controls-info {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    z-index: 10;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Game elements */
+.hotdog {
+    background-color: #FFD700;
+    border-radius: 20px;
+}
+
+.human {
+    background-color: #FF69B4;
+}
+
+.condiment-projectile {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.condiment-projectile.ketchup {
+    background-color: #FF0000;
+}
+
+.condiment-projectile.mustard {
+    background-color: #FFD700;
+}
+
+.condiment-projectile.relish {
+    background-color: #32CD32;
+}
+
+.block {
+    position: absolute;
+}
+
+.brick {
+    background-color: #CD853F;
+    background-image: linear-gradient(#8B4513 1px, transparent 1px),
+                      linear-gradient(90deg, #8B4513 1px, transparent 1px);
+    background-size: 10px 10px;
+}
+
+.breakable {
+    background-color: #DEB887;
+    background-image: linear-gradient(#8B4513 1px, transparent 1px),
+                      linear-gradient(90deg, #8B4513 1px, transparent 1px);
+    background-size: 10px 10px;
+    border: 2px solid #8B4513;
+}
+
+.coin {
+    background-color: #FFD700;
+    border-radius: 50%;
+    border: 2px solid #B8860B;
+}
+
+/* Animation classes */
+.jumping {
+    animation: jump 0.5s ease-out;
+}
+
+.stunned {
+    animation: stun 5s linear;
+}
+
+.breaking {
+    animation: break 0.3s ease-out;
+}
+
+@keyframes jump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-100px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes stun {
+    0%, 100% { opacity: 1; }
+    10%, 30%, 50%, 70%, 90% { opacity: 0.5; }
+    20%, 40%, 60%, 80% { opacity: 1; }
+}
+
+@keyframes break {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.1); opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .menu {
+        padding: 20px;
+        min-width: 280px;
+    }
+    
+    .menu h1 {
+        font-size: 28px;
+    }
+    
+    .menu button {
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+    
+    #game-ui {
+        font-size: 18px;
+    }
+    
+    .controls-info {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+}

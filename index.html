@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runaway Hotdog</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="game-ui">
+            <div class="score-container">Score: <span id="score">0</span></div>
+            <div class="lives-container">Lives: <span id="lives-count">3</span> 🌭</div>
+            <div class="condiment-container">
+                <div class="condiment ketchup">
+                    <div class="condiment-icon">🍅</div>
+                    <div class="condiment-count" id="ketchup-count">3</div>
+                </div>
+                <div class="condiment mustard">
+                    <div class="condiment-icon">🟡</div>
+                    <div class="condiment-count" id="mustard-count">3</div>
+                </div>
+                <div class="condiment relish">
+                    <div class="condiment-icon">🥒</div>
+                    <div class="condiment-count" id="relish-count">3</div>
+                </div>
+            </div>
+        </div>
+        
+        <canvas id="game-canvas"></canvas>
+        
+        <div id="game-menu" class="menu">
+            <h1>Runaway Hotdog</h1>
+            <p>You're a hotdog trying to escape hungry humans!</p>
+            <button id="start-button">Start Game</button>
+            <button id="controls-button">Controls</button>
+        </div>
+        
+        <div id="game-over" class="menu hidden">
+            <h1>Game Over</h1>
+            <p id="game-over-message">You got eaten!</p>
+            <div class="final-score">Score: <span id="final-score">0</span></div>
+            <button id="restart-button">Play Again</button>
+        </div>
+        
+        <div class="controls-info" id="controls-info">
+            <p>Arrow Keys: Move | Z: Jump | X, C, V: Shoot Condiments</p>
+        </div>
+    </div>
+    
+    <script src="js/engine.js"></script>
+    <script src="js/levels.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/enemies.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
