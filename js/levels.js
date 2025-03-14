@@ -280,22 +280,50 @@ class Level {
 
 // Level data
 const LEVELS = [
+
+    // Level 4 - more complex
+    {
+        map: [
+            "################################",
+            "#      CCCCCCCCCCCCCCCCCCCCCCCCC                 C     #",
+            "#    B######################   #",
+            "#   B  CC                                       #",
+            "# P B        CH                #",
+            "####        ####################",
+            "#                              #",
+            "#       G                 CG   #",
+            "#      ###               ###   #",
+            "#                              #",
+            "#          H     C             #",
+            "#         ###   ###            #",
+            "#               B B B B B B    #",
+            "#  C   C                     B #",
+            "# ### ###    E     E     E   B #",
+            "#                ###########  !#",
+            "################################"
+        ],
+        config: {
+            backgroundColor: '#FFA07A',
+            gravity: 0.6
+        }
+    },
+
     // Level 1 - Tutorial
     {
         map: [
             "################################",
             "#                              #",
             "#                              #",
-            "#        C      C    C         #",
+            "#        CG     CE   CH        #",
             "#       ###    ###  ###        #",
             "#                              #",
-            "#   P                          #",
+            "#   P         H   H   H        #",
             "#  ###        B   B   B        #",
             "#                              #",
-            "#         BB                  !#",
+            "#         BBE                 !#",
             "#        ####         E        #",
             "#                    ###       #",
-            "#   C     C    C      C        #",
+            "#   C     C   HC      C        #",
             "# ####   ###  ###    ###       #",
             "#                              #",
             "################################"
@@ -358,6 +386,8 @@ const LEVELS = [
             gravity: 0.6
         }
     }
+    
+    
 ];
 
 // Create a level from the predefined data
